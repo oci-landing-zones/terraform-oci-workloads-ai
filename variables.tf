@@ -21,8 +21,8 @@ variable "private_key_password" {
 }
 variable "region" {
   description = "The region where resources are deployed."
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 
 # ------------------------------------------------------
@@ -39,14 +39,14 @@ variable "workload_name" {
 
 variable "workload_compartment_ocid" {
   description = "OCID of the existing Workload Compartment."
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 variable "app_subnet_ocid" {
   description = "OCID of the existing App Subnet."
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 # ------------------------------------------------------
@@ -55,20 +55,20 @@ variable "app_subnet_ocid" {
 
 variable "compute_shape" {
   description = "GPU-based shape of the compute instance."
-  type = string
-  default = "VM.GPU.A10.1"
+  type        = string
+  default     = "VM.GPU.A10.1"
 }
 
 variable "compute_boot_volume_size" {
   description = "Boot volume size (in GBs) of the compute instance."
-  type = number
-  default = 100
+  type        = number
+  default     = 100
 }
 
 variable "compute_ssh_public_key" {
   description = "Public SSH Key used to access the compute instance."
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 # ------------------------------------------------------
@@ -77,6 +77,27 @@ variable "compute_ssh_public_key" {
 
 variable "block_volume_size" {
   description = "Block volume size (in GBs) to be attached to the compute instance."
-  type = number
-  default = 200
+  type        = number
+  default     = 200
+}
+
+# ------------------------------------------------------
+# ----- Load Balancer
+#-------------------------------------------------------
+variable "add_lb" {
+  description = "Whether to deploy a public load balancer required for mesh networks. If set to true, a public load balancer will be deployed and the compute instance will be attached to the backend server. If set to false, the public load balancer and backend set will not be created."
+  type        = bool
+  default     = false
+}
+
+variable "lb_subnet_ocid" {
+  description = "OCID of the Public Load Balancer Subnet."
+  type        = string
+  default     = null
+}
+
+variable "lb_policy" {
+  description = "The load balancing policy for distrubuting incoming traffic to backend servers."
+  type        = string
+  default     = "ROUND_ROBIN"
 }
