@@ -62,8 +62,7 @@ variable "compute_shape" {
 variable "compute_boot_volume_size" {
   description = "Boot volume size (in GBs) of the compute instance."
   type        = number
-  default     = 250
-
+  default     = 100
 }
 
 variable "compute_ssh_public_key" {
