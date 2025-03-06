@@ -1,22 +1,19 @@
 #!/bin/bash
 echo "running cloudinit.sh script"
+
 echo "INSTALL"
-sudo dnf install -y dnf-utils zip unzip gcc
-sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-sudo dnf remove -y runc
-
+dnf install -y dnf-utils zip unzip gcc
+dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+dnf remove -y runc
 echo "INSTALL DOCKER"
-sudo dnf install -y docker-ce --nobest
-
+dnf install -y docker-ce --nobest
 echo "ENABLE DOCKER"
-sudo systemctl enable docker.service
-
+systemctl enable docker.service
 echo "INSTALL NVIDIA CONT TOOLKIT"
-sudo dnf install -y nvidia-container-toolkit
-
+dnf install -y nvidia-container-toolkit
 echo "START DOCKER"
-sudo systemctl start docker.service
-sudo usermod -a -G docker opc
+systemctl start docker.service
+usermod -a -G docker opc
 
 echo "PYTHON packages"
 python3 -m pip install --upgrade pip wheel oci
@@ -26,18 +23,18 @@ python3 -m pip install langchain
 python3 -m pip install six
 
 echo "GROWFS"
-sudo /usr/libexec/oci-growfs -y
+/usr/libexec/oci-growfs -y
 
 echo "Transaction monitoring"
 echo "1. Install Python 3.9 and Git"
 cd
-sudo yum install python39 git wget unzip firewalld -y
+yum install python39 git wget unzip firewalld -y
 
 echo "2. Upgrade pip"
 python3.9 -m ensurepip --upgrade
 
 echo "3. Set Python 3.9 as the default python3"
-sudo alternatives --set python3 /usr/bin/python3.9
+alternatives --set python3 /usr/bin/python3.9
 python3 --version
 
 echo "4. Install Jupyter and other packages"
@@ -62,27 +59,28 @@ echo "9. Install additional PyG packages"
 pip3 install --user pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.4.0+cpu.html
 
 echo "10. Create the directory for the dataset"
-mkdir -p /var/tmp/nvflare/datasets/elliptic_pp
+mkdir -p /tmp/nvflare/datasets/elliptic_pp
 
 echo "11. Download the dataset"
-wget -O /var/tmp/nvflare/datasets/elliptic_pp/TransactionsDataset.zip https://objectstorage.us-ashburn-1.oraclecloud.com/n/ocisateam/b/EllipticPlusPlusDataset/o/TransactionsDataset.zip
+wget -O /tmp/nvflare/datasets/elliptic_pp/TransactionsDataset.zip https://objectstorage.us-ashburn-1.oraclecloud.com/n/ocisateam/b/EllipticPlusPlusDataset/o/TransactionsDataset.zip
 
 echo "12. Unzip the dataset"
-unzip -o /var/tmp/nvflare/datasets/elliptic_pp/TransactionsDataset.zip -d /var/tmp/nvflare/datasets/elliptic_pp
+unzip -o /tmp/nvflare/datasets/elliptic_pp/TransactionsDataset.zip -d /tmp/nvflare/datasets/elliptic_pp
 
 echo "13. Move the files to the correct location"
-mv /var/tmp/nvflare/datasets/elliptic_pp/'Transactions Dataset'/* /var/tmp/nvflare/datasets/elliptic_pp
-ls /var/tmp/nvflare/datasets/elliptic_pp
+mv /tmp/nvflare/datasets/elliptic_pp/'Transactions Dataset'/* /tmp/nvflare/datasets/elliptic_pp
+ls /tmp/nvflare/datasets/elliptic_pp
 
 echo "14. Remove the now-empty directory"
-rm -rf /var/tmp/nvflare/datasets/elliptic_pp/'Transactions Dataset'
+rm -rf /tmp/nvflare/datasets/elliptic_pp/'Transactions Dataset'
 
 echo "15. Configure NVFlare"
 pwd
 ls
-nvflare config -jt ~/NVFlare/job_templates/
+nvflare config -jt /NVFlare/job_templates/
 
 echo "16. Run the GraphSAGE finance script locally for each client"
+cd /NVFlare/examples/advanced/gnn
 python3 code/graphsage_finance_local.py --client_id 0
 python3 code/graphsage_finance_local.py --client_id 1
 python3 code/graphsage_finance_local.py --client_id 2
@@ -95,12 +93,12 @@ nvflare simulator -w /tmp/nvflare/gnn/finance_fl_workspace -n 2 -t 2 /tmp/nvflar
 
 echo "19. Open firewall for TensorBoard"
 echo "FIREWALL"
-sudo systemctl stop firewalld
-sudo firewall-offline-cmd --zone=public --add-port=6006/tcp
-sudo systemctl start firewalld
+systemctl stop firewalld
+firewall-offline-cmd --zone=public --add-port=6006/tcp
+systemctl start firewalld
 
 echo "20. Start TensorBoard"
-tensorboard --logdir /tmp/nvflare/gnn --host 0.0.0.0 --port 6006 &
+tensorboard --logdir /tmp/nvflare/gnn --host 0.0.0.0 --port 6006 & 
 
 echo "21. Install and start Jupyter"
 
@@ -121,6 +119,6 @@ docker run -d \
 
 echo "22. Open firewall for Jupyter"
 echo "FIREWALL"
-sudo systemctl stop firewalld
-sudo firewall-offline-cmd --zone=public --add-port=8888/tcp
-sudo systemctl start firewalld
+systemctl stop firewalld
+firewall-offline-cmd --zone=public --add-port=8888/tcp
+systemctl start firewalld
