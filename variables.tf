@@ -62,7 +62,8 @@ variable "compute_shape" {
 variable "compute_boot_volume_size" {
   description = "Boot volume size (in GBs) of the compute instance."
   type        = number
-  default     = 100
+  default     = 250
+
 }
 
 variable "compute_ssh_public_key" {
@@ -70,6 +71,13 @@ variable "compute_ssh_public_key" {
   type        = string
   default     = null
 }
+
+variable "compute_availability_domain" {
+  description = "Availability domain where the compute instance will be deployed. Default is AD-1."
+  type = number
+  default = 1
+}
+
 
 # ------------------------------------------------------
 # ----- Boot Volume

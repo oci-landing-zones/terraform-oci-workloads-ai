@@ -30,8 +30,7 @@ locals {
         shape     = var.compute_shape
         name      = "${var.workload_name}-instance"
         placement = {
-          availability_domain = 1
-          fault_domain        = 1
+          availability_domain = var.compute_availability_domain
         }
         boot_volume = {
           size                          = var.compute_boot_volume_size
