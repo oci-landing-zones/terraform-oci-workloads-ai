@@ -40,8 +40,8 @@ locals {
           hostname                = "${var.workload_name}-instance"
           assign_public_ip        = true
         }
-        marketplace_image = {
-          name = "Oracle Linux 8 STIG"
+        platform_image = {
+          ocid = data.oci_core_images.gpu_images.images[0].id
         }
         cloud_agent = {
           disable_monitoring = false
