@@ -21,8 +21,7 @@ variable "private_key_password" {
 }
 variable "region" {
   description = "The region where resources are deployed."
-  type        = string
-  default     = ""
+  type = string
 }
 
 # ------------------------------------------------------
@@ -63,6 +62,7 @@ variable "compute_boot_volume_size" {
   description = "Boot volume size (in GBs) of the compute instance."
   type        = number
   default     = 100
+
 }
 
 variable "compute_ssh_public_key" {
@@ -79,7 +79,7 @@ variable "compute_availability_domain" {
 
 
 # ------------------------------------------------------
-# ----- Boot Volume
+# ----- Block Volume
 #-------------------------------------------------------
 
 variable "block_volume_size" {
