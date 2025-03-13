@@ -1,5 +1,6 @@
 # Copyright (c) 2025 Oracle and/or its affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+
 data "oci_core_images" "gpu_images" {
   compartment_id           = var.workload_compartment_ocid
   operating_system         = "Oracle Linux"
@@ -38,7 +39,7 @@ locals {
         }
         networking = {
           hostname                = "${var.workload_name}-instance"
-          assign_public_ip        = true
+          assign_public_ip        = false
         }
         platform_image = {
           ocid = data.oci_core_images.gpu_images.images[0].id
@@ -64,7 +65,8 @@ locals {
       BLOCK-VOLUME = {
         display_name = "${var.workload_name}-block-volume"
         volume_size = var.block_volume_size
-        attach_to_instances = [{ 
+        availability_domain = var.compute_availability_domain
+        attach_to_instances = [{
           device_name = null
           instance_id = "WORKLOAD-INSTANCE"
           type = "paravirtualized"
