@@ -61,7 +61,7 @@ variable "compute_shape" {
 variable "compute_boot_volume_size" {
   description = "Boot volume size (in GBs) of the compute instance."
   type        = number
-  default     = 100
+  default     = 250
 
 }
 
@@ -92,15 +92,15 @@ variable "block_volume_size" {
 # ----- Load Balancer
 #-------------------------------------------------------
 variable "add_lb" {
-  description = "Whether to deploy a public load balancer required for mesh networks. If set to true, a public load balancer will be deployed and the compute instance will be attached to the backend server. If set to false, the public load balancer and backend set will not be created."
+  description = "Whether to deploy a load balancer. If set to true, a load balancer will be deployed and the compute instance will be attached to the backend server. If set to false, the load balancer and backend set will not be created."
   type        = bool
   default     = false
 }
 
 variable "lb_subnet_ocid" {
-  description = "OCID of the Public Load Balancer Subnet."
+  description = "OCID of the Load Balancer Subnet."
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "lb_policy" {

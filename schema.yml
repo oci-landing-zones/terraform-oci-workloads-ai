@@ -68,8 +68,8 @@ variables:
   
   add_lb:
     type: boolean
-    title: "Add a Public Load Balancer?"
-    description: "Deploys a public load balancer required for mesh networks, not Hub and Spoke network architectures, as well as a backend set."
+    title: "Add a Load Balancer?"
+    description: "Deploys an optional load balancer as well as a backend set."
     required: true
     default: false
 
@@ -77,8 +77,8 @@ variables:
     type: oci:core:subnet:id
     dependsOn:
       compartmentId: ${workload_compartment_ocid}
-    title: "Public Load Balancer Subnet OCID"
-    description: "Provide the OCID of the existing Public Load Balancer Subnet."
+    title: "Load Balancer Subnet OCID"
+    description: "Provide the OCID of the existing Load Balancer Subnet."
     required: false
     visible:
       eq:
@@ -119,7 +119,7 @@ variables:
     title: "Compute Boot Volume Size"
     description: "Enter the Boot volume size (in GBs) of the compute instance"
     required: false
-    default: 100
+    default: 250
 
   compute_ssh_public_key:
     type: oci:core:ssh:publickey

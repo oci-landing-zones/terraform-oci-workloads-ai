@@ -1,7 +1,20 @@
 # Copyright (c) 2025 Oracle and/or its affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 
+data "oci_core_subnet" "lb_subnet" {
+  count     = var.add_lb ? 1 : 0
+  subnet_id = var.lb_subnet_ocid
+  lifecycle {
+    precondition {
+      condition     = length(var.lb_subnet_ocid) > 0
+      error_message = "The OCID for the load balancer subnet is required."
+    }
+  }
+}
+
 locals {
+  is_lbsubnet_private = try(data.oci_core_subnet.lb_subnet[0].prohibit_public_ip_on_vnic, null)
+
   l7_load_balancers_configuration = {
     l7_load_balancers = {
       WORKLOAD-LB = {
@@ -15,7 +28,7 @@ locals {
         }
         subnet_keys      = null
         subnet_ids       = [var.lb_subnet_ocid]
-        is_private       = false
+        is_private       = local.is_lbsubnet_private != null ? local.is_lbsubnet_private : null
         reserved_ips_ids = []
         backend_sets = {
           WK-LB-BACKEND-SET-1 = {
