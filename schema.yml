@@ -16,8 +16,10 @@ variableGroups:
     variables:
       - "workload_name"
       - "workload_compartment_ocid"
+      - "app_subnet_compartment_ocid"
       - "app_subnet_ocid"
       - "add_lb"
+      - "lb_subnet_compartment_ocid"
       - "lb_subnet_ocid"
 
   - title: "Compute"
@@ -55,15 +57,21 @@ variables:
   workload_compartment_ocid:
     type: oci:identity:compartment:id
     title: "Workload Compartment OCID"
-    description: "Provide the OCID of the existing Workload Compartment. Resources will be deployed in this compartment."
+    description: "Choose the existing Workload Compartment. Resources will be deployed in this compartment."
+    required: true
+
+  app_subnet_compartment_ocid:
+    type: oci:identity:compartment:id
+    title: "App Subnet Compartment OCID"
+    description: "Choose the compartment where the existing app subnet resides."
     required: true
 
   app_subnet_ocid:
     type: oci:core:subnet:id
     dependsOn:
-      compartmentId: ${workload_compartment_ocid}
+      compartmentId: ${app_subnet_compartment_ocid}
     title: "App Subnet OCID"
-    description: "Provide the OCID of the existing App Subnet."
+    description: "Choose the existing App Subnet."
     required: true
   
   add_lb:
@@ -73,12 +81,22 @@ variables:
     required: true
     default: false
 
+  lb_subnet_compartment_ocid:
+    type: oci:identity:compartment:id
+    title: "Load Balancer Subnet Compartment OCID"
+    description: "Choose the compartment where the existing load balancer subnet resides."
+    required: true
+    visible:
+      eq:
+        - ${add_lb}
+        - true 
+
   lb_subnet_ocid:
     type: oci:core:subnet:id
     dependsOn:
-      compartmentId: ${workload_compartment_ocid}
+      compartmentId: ${lb_subnet_compartment_ocid}
     title: "Load Balancer Subnet OCID"
-    description: "Provide the OCID of the existing Load Balancer Subnet."
+    description: "Choose the existing Load Balancer Subnet."
     required: false
     visible:
       eq:
