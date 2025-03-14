@@ -21,7 +21,7 @@ variable "private_key_password" {
 }
 variable "region" {
   description = "The region where resources are deployed."
-  type = string
+  type        = string
 }
 
 # ------------------------------------------------------
@@ -73,8 +73,8 @@ variable "compute_ssh_public_key" {
 
 variable "compute_availability_domain" {
   description = "Availability domain where the compute instance will be deployed. Default is AD-1."
-  type = number
-  default = 1
+  type        = number
+  default     = 1
 }
 
 
