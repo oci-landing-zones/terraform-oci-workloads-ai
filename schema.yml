@@ -28,6 +28,7 @@ variableGroups:
       - "compute_boot_volume_size"
       - "compute_ssh_public_key"
       - "compute_availability_domain"
+      - "compute_fault_domain"
       - "block_volume_size"
 
   - title: "Hidden Variables"
@@ -149,6 +150,13 @@ variables:
     type: integer
     title: "Compute Availability Domain"
     description: "Enter the availability domain where the compute instance will be deployed."
+    required: false
+    default: 1
+
+  compute_fault_domain:
+    type: integer
+    title: "Compute Fault Domain"
+    description: "Enter the fault domain where the compute instance will be deployed."
     required: false
     default: 1
 

@@ -12,7 +12,7 @@ locals {
         name      = "${var.workload_name}-instance"
         placement = {
           availability_domain = var.compute_availability_domain
-#          fault_domain        = var.compute_fault_domain
+          fault_domain        = var.compute_fault_domain
         }
         boot_volume = {
           size                          = var.compute_boot_volume_size

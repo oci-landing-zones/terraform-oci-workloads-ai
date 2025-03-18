@@ -77,6 +77,11 @@ variable "compute_availability_domain" {
   default     = 1
 }
 
+variable "compute_fault_domain" {
+  description = "Fault domain where the compute instance will be deployed. Default is FD-1."
+  type        = number
+  default     = 1
+}
 
 # ------------------------------------------------------
 # ----- Block Volume
