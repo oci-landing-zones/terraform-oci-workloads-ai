@@ -53,7 +53,7 @@ variables:
     title: "Workload Name"
     description: "Provide the name of the workload. This name is appended to resources to differentiate between similar workloads."
     required: true
-    default: "TransactionMonitoringWorkload"
+    default: "FSI_TMS"
 
   workload_compartment_ocid:
     type: oci:identity:compartment:id
