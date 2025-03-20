@@ -28,12 +28,12 @@ variable "region" {
 # ----- Workload
 #-------------------------------------------------------
 variable "workload_name" {
-  description = "Name of the workload. Default name is TransactionMonitoringWorkload"
+  description = "Name of the workload. Default name is FSI_TMS"
   validation {
     condition     = length(regexall("^[A-Za-z][A-Za-z0-9]", var.workload_name)) > 0
     error_message = "Validation failed for workload_name: value must contain alphanumeric characters only, starting with a letter."
   }
-  default = "TransactionMonitoringWorkload"
+  default = "FSI_TMS"
 }
 
 variable "workload_compartment_ocid" {
