@@ -28,5 +28,3 @@ module "test_instance" {
   app_subnet_ocid = "<REPLACE-WITH-APP-SUBNET-OCID>"
   compute_ssh_public_key = "<REPLACE-WITH-SSH-PUBLIC-KEY>"
 }
-
-

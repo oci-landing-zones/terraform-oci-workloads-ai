@@ -62,7 +62,6 @@ variable "compute_boot_volume_size" {
   description = "Boot volume size (in GBs) of the compute instance."
   type        = number
   default     = 250
-
 }
 
 variable "compute_ssh_public_key" {
@@ -109,7 +108,7 @@ variable "lb_subnet_ocid" {
 }
 
 variable "lb_policy" {
-  description = "The load balancing policy for distrubuting incoming traffic to backend servers."
+  description = "The load balancing policy for distributing incoming traffic to backend servers."
   type        = string
   default     = "ROUND_ROBIN"
 }
