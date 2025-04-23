@@ -26,5 +26,6 @@ module "test_instance" {
   #---------------------------------------
   workload_compartment_ocid = "<REPLACE-WITH-WORKLOAD-COMPARTMENT-OCID>"
   app_subnet_ocid = "<REPLACE-WITH-APP-SUBNET-OCID>"
+  app_nsg_ocid = "<REPLACE-WITH-APP-NSG-OCID>"
   compute_ssh_public_key = "<REPLACE-WITH-SSH-PUBLIC-KEY>"
 }

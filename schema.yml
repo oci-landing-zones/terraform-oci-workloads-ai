@@ -18,6 +18,7 @@ variableGroups:
       - "workload_compartment_ocid"
       - "app_subnet_compartment_ocid"
       - "app_subnet_ocid"
+      - "app_nsg_ocid"
       - "add_lb"
       - "lb_subnet_compartment_ocid"
       - "lb_subnet_ocid"
@@ -64,7 +65,7 @@ variables:
   app_subnet_compartment_ocid:
     type: oci:identity:compartment:id
     title: "App Subnet Compartment OCID"
-    description: "Choose the compartment where the existing app subnet resides."
+    description: "Choose the compartment where the existing App Subnet resides."
     required: true
 
   app_subnet_ocid:
@@ -74,7 +75,15 @@ variables:
     title: "App Subnet OCID"
     description: "Choose the existing App Subnet."
     required: true
-  
+
+  app_nsg_ocid:
+    type: oci:core:nsg:id
+    dependsOn:
+      compartmentId: ${app_subnet_compartment_ocid}
+    title: "App NSG OCID"
+    description: "Choose the existing App Network Security Group (NSG).  Required security rules should be set up prior to workload deployment."
+    required: true
+
   add_lb:
     type: boolean
     title: "Add a Load Balancer?"
