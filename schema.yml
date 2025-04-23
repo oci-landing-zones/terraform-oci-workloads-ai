@@ -65,7 +65,7 @@ variables:
   app_subnet_compartment_ocid:
     type: oci:identity:compartment:id
     title: "App Subnet Compartment OCID"
-    description: "Choose the compartment where the existing app subnet resides."
+    description: "Choose the compartment where the existing App Subnet resides."
     required: true
 
   app_subnet_ocid:
@@ -81,7 +81,7 @@ variables:
     dependsOn:
       compartmentId: ${app_subnet_compartment_ocid}
     title: "App NSG OCID"
-    description: "Provide the OCID of the exiting App Network Security Group (NSG)."
+    description: "Choose the existing App Network Security Group (NSG).  Required security rules should be set up prior to workload deployment."
     required: true
 
   add_lb:
