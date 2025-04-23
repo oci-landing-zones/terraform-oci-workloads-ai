@@ -41,6 +41,7 @@ locals {
         networking = {
           hostname                = substr(replace(lower(var.workload_name), "-_", ""), 0, 14)
           assign_public_ip        = false
+          network_security_groups = [var.app_nsg_ocid]
         }
         platform_image = {
           ocid = data.oci_core_images.gpu_images.images[0].id

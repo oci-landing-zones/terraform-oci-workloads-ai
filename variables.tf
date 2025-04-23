@@ -48,6 +48,12 @@ variable "app_subnet_ocid" {
   default     = null
 }
 
+variable "app_nsg_ocid" {
+  description = "OCID of the existing Network Security Group (NSG). Required security rules should be set up prior to workload deployment."
+  type        = string
+  default     = null
+}
+
 # ------------------------------------------------------
 # ----- Compute Instance
 #-------------------------------------------------------
