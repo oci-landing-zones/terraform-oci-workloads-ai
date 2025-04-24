@@ -48,6 +48,12 @@ variable "app_subnet_ocid" {
   default     = null
 }
 
+variable "app_nsg_ocid" {
+  description = "OCID of the existing Network Security Group (NSG). Required security rules should be set up prior to workload deployment."
+  type        = string
+  default     = null
+}
+
 # ------------------------------------------------------
 # ----- Compute Instance
 #-------------------------------------------------------
@@ -90,4 +96,25 @@ variable "block_volume_size" {
   description = "Block volume size (in GBs) to be attached to the compute instance."
   type        = number
   default     = 200
+}
+
+# ------------------------------------------------------
+# ----- Load Balancer
+#-------------------------------------------------------
+variable "add_lb" {
+  description = "Whether to deploy a load balancer. If set to true, a load balancer will be deployed and the compute instance will be attached to the backend server. If set to false, the load balancer and backend set will not be created."
+  type        = bool
+  default     = false
+}
+
+variable "lb_subnet_ocid" {
+  description = "OCID of the Load Balancer Subnet."
+  type        = string
+  default     = ""
+}
+
+variable "lb_policy" {
+  description = "The load balancing policy for distributing incoming traffic to backend servers."
+  type        = string
+  default     = "ROUND_ROBIN"
 }

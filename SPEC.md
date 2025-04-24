@@ -29,6 +29,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_add_lb"></a> [add\_lb](#input\_add\_lb) | Whether to deploy a load balancer. If set to true, a load balancer will be deployed and the compute instance will be attached to the backend server. If set to false, the load balancer and backend set will not be created. | `bool` | `false` | no |
+| <a name="input_app_nsg_ocid"></a> [app\_nsg\_ocid](#input\_app\_nsg\_ocid) | OCID of the existing Network Security Group (NSG). Required security rules should be set up prior to workload deployment. | `string` | `null` | no |
 | <a name="input_app_subnet_ocid"></a> [app\_subnet\_ocid](#input\_app\_subnet\_ocid) | OCID of the existing App Subnet. | `string` | `null` | no |
 | <a name="input_block_volume_size"></a> [block\_volume\_size](#input\_block\_volume\_size) | Block volume size (in GBs) to be attached to the compute instance. | `number` | `200` | no |
 | <a name="input_compute_availability_domain"></a> [compute\_availability\_domain](#input\_compute\_availability\_domain) | Availability domain where the compute instance will be deployed. Default is AD-1. | `number` | `1` | no |
