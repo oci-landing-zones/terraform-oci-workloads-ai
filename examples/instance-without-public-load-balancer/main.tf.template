@@ -25,7 +25,14 @@ module "test_instance" {
   # ----- Input Variables
   #---------------------------------------
   workload_compartment_ocid = "<REPLACE-WITH-WORKLOAD-COMPARTMENT-OCID>"
+  app_subnet_compartment_ocid = "<REPLACE-WITH-APP-SUBNET-COMPARTMENT-OCID>"
   app_subnet_ocid = "<REPLACE-WITH-APP-SUBNET-OCID>"
   app_nsg_ocid = "<REPLACE-WITH-APP-NSG-OCID>"
   compute_ssh_public_key = "<REPLACE-WITH-SSH-PUBLIC-KEY>"
+  add_lb = false
+  compute_shape = "VM.GPU.A10.1"
+  compute_boot_volume_size = 250
+  compute_availability_domain = 1
+  compute_fault_domain = 1
+  block_volume_size = 200
 }

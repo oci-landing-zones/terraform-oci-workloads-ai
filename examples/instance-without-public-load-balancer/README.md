@@ -1,13 +1,15 @@
-# AI Transaction Monitoring Workload Deployment Guide
+# AI Transaction Monitoring Workload Template
 
-This template shows how to deploy an AI Transaction Monitoring Workload using an OCI Core Landing Zone configuration.
+This template shows how to deploy an AI Transaction Monitoring Workload configuration with no public load balancer and backend set. 
 
-In this template, a single GPU-based compute instance is deployed, optionally with a dedicated application load blancer and backend set.
+In this template, a single GPU-based compute instance and block volume are deployed, with NVFlare's Graph Neural Network (GNN) to apply federated learning to a GNN model, specifically using GraphSAGE for tasks like transactional fraud detection.
 The following prerequisite resources are assumed to exist prior to deploying this workload:
 
 - a workload compartment for holding the compute instance and block volume
 - an application compartment with a private application subnet with a VCN, including a DRG and NAT gateway for outbound access to the internet.
 - optionally, a public web subnet for holding a load balancer used in a mesh network environment.
+
+For new environments, we recommend deploying the [OCI Core Landing Zone](https://github.com/oci-landing-zones/terraform-oci-core-landingzone) with a Three-Tiered VCN and an App Subnet connected to a NAT Gateway to provide a well-architected prescriptive onboarding experience that is secured with the CIS OCI Benchmark.
 
 ## Default Values
 
@@ -30,7 +32,7 @@ This template has the following parameters set:
 | compute\_fault\_domain | Fault domain where the compute instance will be deployed. Default is FD-1. | 1 | |
 | block\_volume\_size | Block volume size (in GBs) to be attached to the compute instance. | 200 | |
 
-For a detailed description of all variables that can be used, see the [Variables](https://github.com/oci-landing-zones/terraform-oci-core-landingzone/blob/main/VARIABLES.md) documentation.
+For a detailed description of all variables that can be used, see the [Spec](../../SPEC.md) documentation.
 
 This template can be deployed using OCI Resource Manager Service (RMS) or Terraform CLI:
 
@@ -38,11 +40,11 @@ This template can be deployed using OCI Resource Manager Service (RMS) or Terraf
 
 By clicking the button below, you are redirected to an OCI RMS Stack with variables pre-assigned for deployment.
 
-[![Deploy_To_OCI](images/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/oci-landing-zones/ai-transaction-monitoring-workload/archive/refs/heads/main.zip&zipUrlVariables={"workload_name":"TMS","workload_compartment_ocid":"","app_subnet_compartment_ocid":"","app_subnet_ocid":"","app_nsg_ocid":"","add_lb":false,"lb_subnet_compartment_ocid":"","lb_subnet_ocid":"","compute_shape":"VM.GPU.A10.1","compute_boot_volume_size":"250","compute_ssh_public_key":"","compute_availability_domain":"3","compute_fault_domain":"3","block_volume_size":"200"})
+[![Deploy_To_OCI](../../images/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/oci-landing-zones/terraform-oci-workloads-ai//ai-transaction-monitoring-workload/archive/refs/heads/main.zip&zipUrlVariables={"workload_name":"TMS","workload_compartment_ocid":"","app_subnet_compartment_ocid":"","app_subnet_ocid":"","app_nsg_ocid":"","add_lb":false,"lb_subnet_compartment_ocid":"","lb_subnet_ocid":"","compute_shape":"VM.GPU.A10.1","compute_boot_volume_size":"250","compute_ssh_public_key":"","compute_availability_domain":"1","compute_fault_domain":"1","block_volume_size":"200"})
 
 You are required to review/adjust the following variable settings:
 
-- Provide existing OCIDs for *workload\_compartment\_ocid*, *app\_subnet\_compartment\_ocid*, *app\_subnet\_ocid*, and if opted for, *lb\_subnet\_compartment\_ocid* and *lb\_subnet\_\_ocid* fields.
+- Provide existing OCIDs for *workload\_compartment\_ocid*, *app\_subnet\_compartment\_ocid*, *app\_subnet\_ocid*, *app\_nsg\_ocid* and if opted for, *lb\_subnet\_compartment\_ocid* and *lb\_subnet\_\_ocid* fields if *add\_lb* is set to *true*.
 - Check *add\_lb* option in case it is desired.
 - Make sure to enter the *compute\_ssh\_public\_key* variable with a public SSH key for the compute instance.
 - Be sure to adjust *compute\_availability\_domain* and *compute\_fault\_domain* to match your GPU shape availability.
