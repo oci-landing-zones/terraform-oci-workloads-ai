@@ -1,9 +1,9 @@
 # AI Transaction Monitoring Workload Release Notes
 
-## v1.0.0 - 2025-TBD
-- Initial Release of AI Transaction Monitoring Workload 
+## May 16, 2025 Release Notes - 1.0.0 
+    1. Initial Release of AI Transaction Monitoring Workload 
 
-  This repository provides Terraform files extending [OCI Core Landing Zone][1] to deploy infrastructure used for an Artificial Intelligence (AI) driven financial transaction monitoring application.
+This repository provides Terraform files extending [OCI Core Landing Zone][1] to deploy infrastructure used for an Artificial Intelligence (AI) driven financial transaction monitoring application.
 
 ## License
 
