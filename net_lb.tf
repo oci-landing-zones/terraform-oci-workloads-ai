@@ -64,6 +64,6 @@ locals {
 
 module "workload_lb" {
   count                           = var.add_lb ? 1 : 0
-  source                          = "github.com/oci-landing-zones/terraform-oci-cis-landing-zone-networking.git?ref=v0.7.3/modules/l7_load_balancers"
+  source                          = "github.com/oci-landing-zones/terraform-oci-cis-landing-zone-networking.git?ref=v0.7.5/modules/l7_load_balancers"
   l7_load_balancers_configuration = local.l7_load_balancers_configuration
 }
