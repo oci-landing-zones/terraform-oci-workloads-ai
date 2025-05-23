@@ -7,6 +7,8 @@ locals {
   all_tags_defined_tags        = {}
   all_tags_freeform_tags       = {}
 
+  tag_default_value = fileexists("${path.module}/release.txt") ? "${file("${path.module}/release.txt")}" : "undefined"
+
   tags_configuration = {
     default_compartment_id = var.tenancy_ocid
     cis_namespace_name     = length(local.tag_namespace_name) > 0 ? local.tag_namespace_name : local.default_tag_namespace_name
@@ -14,14 +16,20 @@ locals {
     default_freeform_tags  = local.tags_freeform_tags
 
     namespaces = {
-      ARCH-CENTER-NAMESPACE = {
-        name        = "ArchitectureCenter\\wl-ai-tm-${var.workload_name}"
-        description = "AI Transaction Monitoring tag namespace for OCI Architecture Center."
+      LZ-NAMESPACE = {
+        name        = "ArchitectureCenter\\ocilz-wl-ai-tm-${var.workload_name}"
+        description = "AI Transaction Monitoring Workload tag namespace for OCI Architecture Center."
         is_retired  = false
         tags = {
-          ARCH-CENTER-TAG = {
-            name        = "release"
-            description = "AI Transaction Monitoring tag for OCI Architecture Center."
+          WORKLOAD-TAG = {
+            name        = "wl-ai-tm"
+            description = "AI Transaction Monitoring Workload tag containing current release version number."
+            tag_defaults = {
+              WORKLOAD-TAG-DEFAULT = {
+                compartment_ids = [var.workload_compartment_ocid]
+                default_value = local.tag_default_value
+              }
+            }
           }
         }
       }
