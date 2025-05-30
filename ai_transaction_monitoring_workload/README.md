@@ -151,3 +151,12 @@ Released under the Universal Permissive License v1.0 as shown at <https://oss.or
 
   Once capacity limits are increased, availability of GPU shapes requires a one-time acceptance of the "Oracle and Nvidia Terms of Use" agreement. **From the OCI console, create an initial temporary instance with a GPU shape and check the box** for "I have reviewed and accept the following documents:" and select the shape. Create the instance in any compartment and then terminate it in the console. Subsequent landing zone instances with GPU shapes from Terraform will be allowed unimpeded.
 
+**2. GPU Compute Fault Domain Location**
+
+  * Terraform Apply will fail if the GPU capacity is not in the indicated Fault Domain.  The Fault Domain value is required, but there is no way to verify that value beforehand in the OCI console.  You may have to retry the Apply after incrementing the Fault Domain value.
+
+  ```
+    Error: 500-InternalError, Out of host capacity.
+
+    Further Information: Out of capacity for shape VM.GPU.A10.1 in availability domain wxyz:US-ASHBURN-AD-1 and fault domain FAULT-DOMAIN-1. Try creating the instance without specifying fault domain or try again later.
+  ```
