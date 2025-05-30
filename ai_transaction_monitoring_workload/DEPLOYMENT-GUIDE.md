@@ -2,7 +2,7 @@
 
 This template shows how to deploy an AI Transaction Monitoring Workload using an OCI Core Landing Zone configuration.
 
-In this template, a single GPU-based compute instance is deployed, optionally with a dedicated application load blancer and backend set.
+In this template, a single GPU-based compute instance is deployed, optionally with a dedicated application load balancer and backend set.
 The following prerequisite resources are assumed to exist prior to deploying this workload:
 
 - a workload compartment for holding the compute instance and block volume
@@ -49,7 +49,7 @@ This template has the following parameters set:
 | compute\_fault\_domain | Fault domain where the compute instance will be deployed. Default is FD-1. | 1 | |
 | block\_volume\_size | Block volume size (in GBs) to be attached to the compute instance. | 200 | |
 
-For a detailed description of all variables that can be used, see the [Variables](https://github.com/oci-landing-zones/terraform-oci-core-landingzone/blob/main/VARIABLES.md) documentation.
+For a detailed description of all variables that can be used, see the [SPEC.md](SPEC.md) documentation.
 
 This template can be deployed using OCI Resource Manager Service (RMS) or Terraform CLI:
 
