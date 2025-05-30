@@ -1,11 +1,16 @@
 # AI Transaction Monitoring Workload Release Notes
 
+<<<<<<< HEAD
 ## May 30, 2025 Release Notes - 1.0.1
     1. Tag namespace updated to include ocilz prefix and tag default updated to include current release number.
     2. General bug fixes.
 
 ## May 16, 2025 Release Notes - 1.0.0 
     1. Initial Release of AI Transaction Monitoring Workload. 
+=======
+## May 16, 2025 Release Notes - 1.0.0 
+    1. Initial Release of AI Transaction Monitoring Workload 
+>>>>>>> 89825475ed4122484111456bed44046cfa16b427
 
 This repository provides Terraform files extending [OCI Core Landing Zone][1] to deploy infrastructure used for an Artificial Intelligence (AI) driven financial transaction monitoring application.
 

@@ -95,10 +95,6 @@ Once you have the data in the right format, you can pass it through the model to
 
 Please see the [Deployment Guide](DEPLOYMENT-GUIDE.md) for instructions on how to set up an OCI tenancy as a prerequisite. See also the details below on making GPU compute capacity available in that tenancy.
 
-Within this module you will find the [examples](../ai_transaction_monitoring_workload/examples) folder. The folder contains an example that is a fully runnable Terraform configuration (without the public load balancer) that you can quickly test and put to use by modifying the input data according to your own needs.
-
-After training your GNN model (like GraphSAGE) on transactional data, during inference, you can input a new transaction (or a batch of transactions) into the model. The model would then analyze the transaction's features (and potentially its connections in the graph, like related transactions or accounts) and output a prediction, such as a score or label that indicates whether the transaction is fraudulent or not.
-
 ### GPU Compute Capacity
 
 Note that to use NVIDIA GPU compute instances in an OCI Availability Domain (AD), a prerequisite is to increase service limit counts for the GPU shape(s) you need to use.  Before attempting to deploy this workload, please **open an OCI service request to make the necessary adjustments** under Tenancy Administration > Limits, Quotas and Usage.
