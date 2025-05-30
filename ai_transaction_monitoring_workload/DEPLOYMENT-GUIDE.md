@@ -19,7 +19,7 @@ The diagram below shows the AI Transaction Monitoring Workload deployed resource
 
 - Networking topology: Hub and Spoke model (Hub/DMZ VCN with a DRG), which includes subnets and NSGs for web, indoor firewall and jump host uses.  This option also provides a NAT gateway, which is needed for externally available code installed on the compute instance.
 - OCI Firewall in the Hub/DMZ VCN, required for proper routing within the landing zone.
-- Bastion jump host in the Hub/DMZ VCN, required for SSH access to the compute instance on a private subnet.
+- Bastion jump host, with Oracle Linux 8 STIG image, in the Hub/DMZ VCN, required for SSH access to the compute instance on a private subnet.
 - A single Three Tier VCN (spoke) attached to the DRG, which includes an application subnet and its associated NSG.
 
 A separate application compartment is deployed automatically by Core Landing Zone.  OCID values from these prerequisite resources are used as input to this module for placement of the compute instance, associated block storage and application load balancer, if included.
