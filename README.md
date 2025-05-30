@@ -1,6 +1,6 @@
 # OCI Landing Zones AI Workloads
 
-![Landing Zone logo](ai_transaction_monitoring_workload/images/landing_zone_300.png)
+![Landing Zone logo](images/landing_zone_300.png)
 
 Welcome to the [OCI Landing Zones (OLZ) Community](https://github.com/oci-landing-zones)! OCI Landing Zones simplify onboarding and running on OCI by providing design guidance, best practices, and pre-configured Terraform deployment templates for various architectures and use cases. These enable customers to easily provision a secure tenancy foundation in the cloud along with all required services, and reliably scale as workloads expand.
 
@@ -11,12 +11,12 @@ This repository contains Terraform modules for managing AI workload resources in
 ## CIS OCI Foundations Benchmark Modules Collection
 
 This repository is part of a broader collection of repositories containing modules that help customers align their OCI implementations with the CIS OCI Foundations Benchmark recommendations:
-- [Identity & Access Management](https://github.com/oracle-quickstart/terraform-oci-cis-landing-zone-iam)
-- [Networking](https://github.com/oracle-quickstart/terraform-oci-cis-landing-zone-networking)
-- [Governance](https://github.com/oracle-quickstart/terraform-oci-cis-landing-zone-governance)
-- [Security](https://github.com/oracle-quickstart/terraform-oci-cis-landing-zone-security)
-- [Observability & Monitoring](https://github.com/oracle-quickstart/terraform-oci-cis-landing-zone-observability)
-- [Secure Workloads](https://github.com/oracle-quickstart/terraform-oci-secure-workloads) 
+- [Identity & Access Management](https://github.com/oci-landing-zones/terraform-oci-modules-iam)
+- [Networking](https://github.com/oci-landing-zones/terraform-oci-modules-networking)
+- [Governance](https://github.com/oci-landing-zones/terraform-oci-modules-governance)
+- [Security](https://github.com/oci-landing-zones/terraform-oci-modules-security)
+- [Observability & Monitoring](https://github.com/oci-landing-zones/terraform-oci-modules-observability)
+- [Secure Workloads](https://github.com/oci-landing-zones/terraform-oci-modules-workloads)
 
 The modules in this collection are designed for flexibility, are straightforward to use, and enforce CIS OCI Foundations Benchmark recommendations when possible.
 
