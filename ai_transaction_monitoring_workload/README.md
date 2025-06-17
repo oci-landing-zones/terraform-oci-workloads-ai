@@ -160,3 +160,7 @@ Released under the Universal Permissive License v1.0 as shown at <https://oss.or
 
     Further Information: Out of capacity for shape VM.GPU.A10.1 in availability domain wxyz:US-ASHBURN-AD-1 and fault domain FAULT-DOMAIN-1. Try creating the instance without specifying fault domain or try again later.
   ```
+
+**3. Compute GPU Shapes Are Not Supported by Shielded Instances and Secure Boot**
+
+  * Be aware that UEFI Secure Boot is not available when using GPU shapes in OCI.  See [Shielded Instances > Supported Shapes and Images](https://docs.oracle.com/en-us/iaas/Content/Compute/References/shielded-instances.htm#shielded-instances-supported-shapes).
