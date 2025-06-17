@@ -30,6 +30,7 @@ locals {
       WORKLOAD-INSTANCE = {
         shape     = var.compute_shape
         name      = "${var.workload_name}-instance"
+        cis_level = var.cis_level
         placement = {
           availability_domain = var.compute_availability_domain
           fault_domain        = var.compute_fault_domain
@@ -58,6 +59,9 @@ locals {
         cloud_init = {
           script_file = "./cloudinit.sh"
         }
+        encryption = {
+          encrypt_in_transit_on_instance_create = true
+        }
       }
     }
   }
@@ -72,7 +76,10 @@ locals {
           device_name = null
           instance_id = "WORKLOAD-INSTANCE"
           attachment_type = "paravirtualized"
-      }]
+        }]
+        encryption = {
+          encrypt_in_transit = true
+        }
       }
     }
   }

@@ -54,6 +54,12 @@ variable "app_nsg_ocid" {
   default     = null
 }
 
+variable "cis_level" {
+  description = "Determines CIS OCI Benchmark Level to apply on workload managed resources. Level 1 is be practical and prudent. Level 2 is intended for environments where security is more critical than manageability and usability. Level 2 drives the creation of block volume encryption with a customer managed key."
+  type        = string
+  default     = "1"
+}
+
 # ------------------------------------------------------
 # ----- Compute Instance
 #-------------------------------------------------------

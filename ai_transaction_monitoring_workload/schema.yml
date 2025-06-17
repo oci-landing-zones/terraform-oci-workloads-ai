@@ -15,6 +15,7 @@ variableGroups:
   - title: "General"
     variables:
       - "workload_name"
+      - "cis_level"
       - "workload_compartment_ocid"
       - "app_subnet_compartment_ocid"
       - "app_subnet_ocid"
@@ -55,6 +56,15 @@ variables:
     description: "Provide the name of the workload. This name is appended to resources to differentiate between similar workloads."
     required: true
     default: "TMS"
+
+  cis_level:
+    type: enum
+    title: "CIS Level"
+    description: "Choose the CIS OCI Benchmark Level to apply on workload managed resources. Level 1 (default) is be practical and prudent. Level 2 is intended for environments where security is more critical than manageability and usability. Level 2 drives the creation of block volume encryption with a customer managed key. More info: <a href=\"https://www.cisecurity.org/benchmark/oracle_cloud\">CIS OCI Benchmark</a>."
+    required: true
+    enum:
+      - "1"
+      - "2"
 
   workload_compartment_ocid:
     type: oci:identity:compartment:id
