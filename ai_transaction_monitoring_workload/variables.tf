@@ -60,6 +60,11 @@ variable "cis_level" {
   default     = "1"
 }
 
+variable "customer_key_ocid" {
+  description = "OCID of the customer-managed encryption key. Required for CIS Level 2."
+  type        = string
+  default     = null
+}
 # ------------------------------------------------------
 # ----- Compute Instance
 #-------------------------------------------------------

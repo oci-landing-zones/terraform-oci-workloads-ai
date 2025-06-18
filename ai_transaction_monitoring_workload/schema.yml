@@ -32,6 +32,9 @@ variableGroups:
       - "compute_availability_domain"
       - "compute_fault_domain"
       - "block_volume_size"
+      - "customer_key_compartment_ocid"
+      - "vault_ocid"
+      - "customer_key_ocid"
 
   - title: "Hidden Variables"
     variables:
@@ -185,6 +188,42 @@ variables:
     description: "Enter the Block volume size (in GBs) to be attached to the compute instance."
     required: false
     default: 200
+
+  customer_key_compartment_ocid:
+    type: oci:identity:compartment:id
+    title: "Customer-Managed Key Compartment"
+    description: "Choose the compartment where the customer-managed key and vault are contained. Required for CIS Level 2."
+    required: false
+    visible:
+      eq:
+        - ${cis_level}
+        - "2"
+
+  vault_ocid:
+    type: oci:kms:vault:id
+    title: "Customer-Managed Vault"
+    description: "Choose the vault that contains the customer-managed key. Required for CIS Level 2."
+    required: false
+    dependsOn:
+      compartmentId: ${customer_key_compartment_ocid}
+    visible:
+      eq:
+        - ${cis_level}
+        - "2"
+
+  customer_key_ocid:
+    type: oci:kms:key:id
+    title: "Customer-Managed Key"
+    description: "Choose the customer-managed key used to encrypt boot and block volumes. Required for CIS Level 2."
+    required: false
+    dependsOn:
+      compartmentId: ${customer_key_compartment_ocid}
+      vaultId: ${vault_ocid}
+    visible:
+      eq:
+        - ${cis_level}
+        - "2"
+
 
 # ------------------------------------------------------
 # ------------   Hidden Vars  --------------------------
