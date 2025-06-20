@@ -30,7 +30,6 @@ locals {
       WORKLOAD-INSTANCE = {
         shape     = var.compute_shape
         name      = "${var.workload_name}-instance"
-        cis_level = var.cis_level
         placement = {
           availability_domain = var.compute_availability_domain
           fault_domain        = var.compute_fault_domain
@@ -61,6 +60,7 @@ locals {
         }
         encryption = {
           encrypt_in_transit_on_instance_create = true
+          kms_key_id                            = var.cis_level == "2" ? var.customer_key_ocid : null
         }
       }
     }
@@ -79,6 +79,7 @@ locals {
         }]
         encryption = {
           encrypt_in_transit = true
+          kms_key_id         = var.cis_level == "2" ? var.customer_key_ocid : null
         }
       }
     }
