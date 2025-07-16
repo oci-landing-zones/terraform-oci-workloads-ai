@@ -35,6 +35,7 @@ variableGroups:
       - "customer_key_compartment_ocid"
       - "vault_ocid"
       - "customer_key_ocid"
+      - "compute_disable_legacy_imds_endpoints"
 
   - title: "Hidden Variables"
     variables:
@@ -224,13 +225,18 @@ variables:
         - ${cis_level}
         - "2"
 
+  compute_disable_legacy_imds_endpoints:
+    type: boolean
+    title: "Disable the Legacy Metadata Service Endpoints?"
+    description: "Check to disable the Legacy Metadata Service endpoints. Required for CIS Level 2."
+    required: false
 
 # ------------------------------------------------------
 # ------------   Hidden Vars  --------------------------
 #-------------------------------------------------------
 
   lb_policy:
-    description: "The load balancing policy for distrubuting incoming traffic to backend servers."
+    description: "The load balancing policy for distributing incoming traffic to backend servers."
     type: string
     default: "ROUND_ROBIN"
     visible: false

@@ -3,9 +3,9 @@
 
 locals {
   # These values can be used in an override file.
-  tag_namespace_name           = ""
-  all_tags_defined_tags        = {}
-  all_tags_freeform_tags       = {}
+  tag_namespace_name     = ""
+  all_tags_defined_tags  = {}
+  all_tags_freeform_tags = {}
 
   tag_default_value = fileexists("${path.module}/release.txt") ? "${file("${path.module}/release.txt")}" : "undefined"
 
@@ -27,7 +27,7 @@ locals {
             tag_defaults = {
               WORKLOAD-TAG-DEFAULT = {
                 compartment_ids = [var.workload_compartment_ocid]
-                default_value = local.tag_default_value
+                default_value   = local.tag_default_value
               }
             }
           }
