@@ -12,11 +12,11 @@
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_workload_compute"></a> [workload\_compute](#module\_workload\_compute) | github.com/oci-landing-zones/terraform-oci-modules-workloads//cis-compute-storage | v0.1.9 |
+| Name | Source | Version                          |
+|------|--------|----------------------------------|
+| <a name="module_workload_compute"></a> [workload\_compute](#module\_workload\_compute) | github.com/oci-landing-zones/terraform-oci-modules-workloads//cis-compute-storage | v0.2.1                           |
 | <a name="module_workload_lb"></a> [workload\_lb](#module\_workload\_lb) | github.com/oci-landing-zones/terraform-oci-cis-landing-zone-networking.git | v0.7.5/modules/l7_load_balancers |
-| <a name="module_workload_tags"></a> [workload\_tags](#module\_workload\_tags) | github.com/oci-landing-zones/terraform-oci-modules-governance//tags | v0.1.5 |
+| <a name="module_workload_tags"></a> [workload\_tags](#module\_workload\_tags) | github.com/oci-landing-zones/terraform-oci-modules-governance//tags | v0.1.5                           |
 
 ## Resources
 
