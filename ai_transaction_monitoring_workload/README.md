@@ -103,10 +103,15 @@ After training your GNN model (like GraphSAGE) on transactional data, during inf
 
 Note that to use NVIDIA GPU compute instances in an OCI Availability Domain (AD), a prerequisite is to increase service limit counts for the GPU shape(s) you need to use.  Before attempting to deploy this workload, please **open an OCI service request to make the necessary adjustments** under Tenancy Administration > Limits, Quotas and Usage.
 
-![increased GPU service limts](../images/GPU_svc_lmts.png)
+![increased GPU service limits](../images/GPU_svc_lmts.png)
 
 See [Known Issues](#known-issues) below for more details, including how to accept the "Oracle and Nvidia Terms of Use".
 
+### CIS Level Benchmark
+
+This workload provides the option to choose which [CIS OCI Benchmark Level](https://www.cisecurity.org/benchmark/oracle_cloud) to apply to resources with the input variable *cis_level*. The benchmark defines configuration profiles, relating to criticality levels of particular security controls. Items in Level 1 intend to be practical and prudent, providing security focused best-practice hardening of a technology. Level 2 extends level 1 and is intended for environments where security is more critical than manageability and usability, acting as defense-in-depth measure.
+
+CIS Level 1 ensures Legacy IMDS Metadata V1 endpoints on compute instances are disabled. CIS Level 2 extends that and encrypts block volumes with a customer-managed key. 
 
 ## CIS OCI Foundations Benchmark Modules Collection
 

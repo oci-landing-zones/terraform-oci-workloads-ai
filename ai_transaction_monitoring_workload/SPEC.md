@@ -12,9 +12,9 @@
 
 ## Modules
 
-| Name | Source | Version                          |
-|------|--------|----------------------------------|
-| <a name="module_workload_compute"></a> [workload\_compute](#module\_workload\_compute) | github.com/oci-landing-zones/terraform-oci-modules-workloads//cis-compute-storage | v0.2.1                           |
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_workload_compute"></a> [workload\_compute](#module\_workload\_compute) | github.com/oci-landing-zones/terraform-oci-modules-workloads//cis-compute-storage | v0.2.1 |
 | <a name="module_workload_lb"></a> [workload\_lb](#module\_workload\_lb) | github.com/oci-landing-zones/terraform-oci-cis-landing-zone-networking.git | v0.7.5/modules/l7_load_balancers |
 | <a name="module_workload_tags"></a> [workload\_tags](#module\_workload\_tags) | github.com/oci-landing-zones/terraform-oci-modules-governance//tags | v0.1.5                           |
 
@@ -39,6 +39,7 @@
 | <a name="input_compute_fault_domain"></a> [compute\_fault\_domain](#input\_compute\_fault\_domain) | Fault domain where the compute instance will be deployed. Default is FD-1. | `number` | `1` | no |
 | <a name="input_compute_shape"></a> [compute\_shape](#input\_compute\_shape) | GPU-based shape of the compute instance. | `string` | `"VM.GPU.A10.1"` | no |
 | <a name="input_compute_ssh_public_key"></a> [compute\_ssh\_public\_key](#input\_compute\_ssh\_public\_key) | Public SSH Key used to access the compute instance. | `string` | `null` | no |
+| <a name="input_customer_key_ocid"></a> [customer\_key\_ocid](#input\_customer\_key\_ocid) | OCID of the customer-managed encryption key. Required for CIS Level 2. | `string` | `null` | no |
 | <a name="input_fingerprint"></a> [fingerprint](#input\_fingerprint) | n/a | `string` | `""` | no |
 | <a name="input_lb_policy"></a> [lb\_policy](#input\_lb\_policy) | The load balancing policy for distributing incoming traffic to backend servers. | `string` | `"ROUND_ROBIN"` | no |
 | <a name="input_lb_subnet_ocid"></a> [lb\_subnet\_ocid](#input\_lb\_subnet\_ocid) | OCID of the Load Balancer Subnet. | `string` | `""` | no |
