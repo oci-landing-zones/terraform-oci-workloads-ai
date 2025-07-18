@@ -1,5 +1,9 @@
 # AI Transaction Monitoring Workload Release Notes
 
+## July 18, 2025 Release Notes - 1.0.2
+    1. Added CIS Level toggle and support for CIS Level 1 and 2 benchmark.
+    2. Added customer key input and ability to disable legacy Instance Metadata Service (IMDS) endpoints.
+
 ## May 30, 2025 Release Notes - 1.0.1
     1. Tag namespace updated to include ocilz prefix and tag default updated to include current release number.
     2. General bug fixes.

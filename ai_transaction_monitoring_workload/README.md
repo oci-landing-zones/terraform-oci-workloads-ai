@@ -95,14 +95,23 @@ Once you have the data in the right format, you can pass it through the model to
 
 Please see the [Deployment Guide](DEPLOYMENT-GUIDE.md) for instructions on how to set up an OCI tenancy as a prerequisite. See also the details below on making GPU compute capacity available in that tenancy.
 
+Within this module you will find the [examples](../ai_transaction_monitoring_workload/examples) folder. The folder contains an example that is a fully runnable Terraform configuration (without the public load balancer) that you can quickly test and put to use by modifying the input data according to your own needs.
+
+After training your GNN model (like GraphSAGE) on transactional data, during inference, you can input a new transaction (or a batch of transactions) into the model. The model would then analyze the transaction's features (and potentially its connections in the graph, like related transactions or accounts) and output a prediction, such as a score or label that indicates whether the transaction is fraudulent or not.
+
 ### GPU Compute Capacity
 
 Note that to use NVIDIA GPU compute instances in an OCI Availability Domain (AD), a prerequisite is to increase service limit counts for the GPU shape(s) you need to use.  Before attempting to deploy this workload, please **open an OCI service request to make the necessary adjustments** under Tenancy Administration > Limits, Quotas and Usage.
 
-![increased GPU service limts](../images/GPU_svc_lmts.png)
+![increased GPU service limits](../images/GPU_svc_lmts.png)
 
 See [Known Issues](#known-issues) below for more details, including how to accept the "Oracle and Nvidia Terms of Use".
 
+### CIS Level Benchmark
+
+This workload provides the option to choose which [CIS OCI Benchmark Level](https://www.cisecurity.org/benchmark/oracle_cloud) to apply to resources with the input variable *cis_level*. The benchmark defines configuration profiles, relating to criticality levels of particular security controls. Items in Level 1 intend to be practical and prudent, providing security focused best-practice hardening of a technology. Level 2 extends level 1 and is intended for environments where security is more critical than manageability and usability, acting as defense-in-depth measure.
+
+CIS Level 1 ensures Legacy IMDS Metadata V1 endpoints on compute instances are disabled. CIS Level 2 extends that and encrypts block volumes with a customer-managed key.
 
 ## CIS OCI Foundations Benchmark Modules Collection
 
@@ -156,3 +165,7 @@ Released under the Universal Permissive License v1.0 as shown at <https://oss.or
 
     Further Information: Out of capacity for shape VM.GPU.A10.1 in availability domain wxyz:US-ASHBURN-AD-1 and fault domain FAULT-DOMAIN-1. Try creating the instance without specifying fault domain or try again later.
   ```
+
+**3. Compute GPU Shapes Are Not Supported by Shielded Instances and Secure Boot**
+
+  * Be aware that UEFI Secure Boot is not available when using GPU shapes in OCI.  See [Shielded Instances > Supported Shapes and Images](https://docs.oracle.com/en-us/iaas/Content/Compute/References/shielded-instances.htm#shielded-instances-supported-shapes).

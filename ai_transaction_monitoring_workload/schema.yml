@@ -15,6 +15,7 @@ variableGroups:
   - title: "General"
     variables:
       - "workload_name"
+      - "cis_level"
       - "workload_compartment_ocid"
       - "app_subnet_compartment_ocid"
       - "app_subnet_ocid"
@@ -31,6 +32,10 @@ variableGroups:
       - "compute_availability_domain"
       - "compute_fault_domain"
       - "block_volume_size"
+      - "customer_key_compartment_ocid"
+      - "vault_ocid"
+      - "customer_key_ocid"
+      - "compute_disable_legacy_imds_endpoints"
 
   - title: "Hidden Variables"
     variables:
@@ -55,6 +60,15 @@ variables:
     description: "Provide the name of the workload. This name is appended to resources to differentiate between similar workloads."
     required: true
     default: "TMS"
+
+  cis_level:
+    type: enum
+    title: "CIS Level"
+    description: "Choose the CIS OCI Benchmark Level to apply on workload managed resources. Level 1 (default) is be practical and prudent. Level 2 is intended for environments where security is more critical than manageability and usability. Level 2 drives the creation of block volume encryption with a customer managed key. More info: <a href=\"https://www.cisecurity.org/benchmark/oracle_cloud\">CIS OCI Benchmark</a>."
+    required: true
+    enum:
+      - "1"
+      - "2"
 
   workload_compartment_ocid:
     type: oci:identity:compartment:id
@@ -176,12 +190,53 @@ variables:
     required: false
     default: 200
 
+  customer_key_compartment_ocid:
+    type: oci:identity:compartment:id
+    title: "Customer-Managed Key Compartment"
+    description: "Choose the compartment where the customer-managed key and vault are contained. Required for CIS Level 2."
+    required: false
+    visible:
+      eq:
+        - ${cis_level}
+        - "2"
+
+  vault_ocid:
+    type: oci:kms:vault:id
+    title: "Customer-Managed Vault"
+    description: "Choose the vault that contains the customer-managed key. Required for CIS Level 2."
+    required: false
+    dependsOn:
+      compartmentId: ${customer_key_compartment_ocid}
+    visible:
+      eq:
+        - ${cis_level}
+        - "2"
+
+  customer_key_ocid:
+    type: oci:kms:key:id
+    title: "Customer-Managed Key"
+    description: "Choose the customer-managed key used to encrypt boot and block volumes. Required for CIS Level 2."
+    required: false
+    dependsOn:
+      compartmentId: ${customer_key_compartment_ocid}
+      vaultId: ${vault_ocid}
+    visible:
+      eq:
+        - ${cis_level}
+        - "2"
+
+  compute_disable_legacy_imds_endpoints:
+    type: boolean
+    title: "Disable the Legacy Metadata Service Endpoints?"
+    description: "Check to disable the Legacy Metadata Service endpoints. Required for CIS Level 2."
+    required: false
+
 # ------------------------------------------------------
 # ------------   Hidden Vars  --------------------------
 #-------------------------------------------------------
 
   lb_policy:
-    description: "The load balancing policy for distrubuting incoming traffic to backend servers."
+    description: "The load balancing policy for distributing incoming traffic to backend servers."
     type: string
     default: "ROUND_ROBIN"
     visible: false

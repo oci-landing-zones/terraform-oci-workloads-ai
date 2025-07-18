@@ -54,6 +54,17 @@ variable "app_nsg_ocid" {
   default     = null
 }
 
+variable "cis_level" {
+  description = "Determines CIS OCI Benchmark Level to apply on workload managed resources. Level 1 is be practical and prudent. Level 2 is intended for environments where security is more critical than manageability and usability. Level 2 drives the creation of block volume encryption with a customer managed key."
+  type        = string
+  default     = "1"
+}
+
+variable "customer_key_ocid" {
+  description = "OCID of the customer-managed encryption key. Required for CIS Level 2."
+  type        = string
+  default     = null
+}
 # ------------------------------------------------------
 # ----- Compute Instance
 #-------------------------------------------------------
@@ -86,6 +97,12 @@ variable "compute_fault_domain" {
   description = "Fault domain where the compute instance will be deployed. Default is FD-1."
   type        = number
   default     = 1
+}
+
+variable "compute_disable_legacy_imds_endpoints" {
+  description = "Whether the compute instance legacy metadata service endpoints should be disabled. Legacy service endpoints such as IMDSv1 are disabled by default. Set to `true` to disable legacy service endpoints."
+  type        = bool
+  default     = true
 }
 
 # ------------------------------------------------------
