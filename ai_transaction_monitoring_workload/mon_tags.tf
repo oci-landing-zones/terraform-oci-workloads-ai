@@ -3,11 +3,10 @@
 
 locals {
   # These values can be used in an override file.
-  tag_namespace_name     = ""
-  all_tags_defined_tags  = {}
-  all_tags_freeform_tags = {}
-
-  tag_default_value = fileexists("${path.module}/release.txt") ? "${file("${path.module}/release.txt")}" : "undefined"
+  tag_namespace_name       = ""
+  all_tags_defined_tags    = {}
+  all_tags_freeform_tags   = {}
+  tag_default_value        = fileexists("${path.module}/release.txt") ? "${file("${path.module}/release.txt")}" : "undefined"
 
   tags_configuration = {
     default_compartment_id = var.tenancy_ocid

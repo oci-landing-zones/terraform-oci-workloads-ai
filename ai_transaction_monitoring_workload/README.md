@@ -111,7 +111,7 @@ See [Known Issues](#known-issues) below for more details, including how to accep
 
 This workload provides the option to choose which [CIS OCI Benchmark Level](https://www.cisecurity.org/benchmark/oracle_cloud) to apply to resources with the input variable *cis_level*. The benchmark defines configuration profiles, relating to criticality levels of particular security controls. Items in Level 1 intend to be practical and prudent, providing security focused best-practice hardening of a technology. Level 2 extends level 1 and is intended for environments where security is more critical than manageability and usability, acting as defense-in-depth measure.
 
-CIS Level 1 ensures Legacy IMDS Metadata V1 endpoints on compute instances are disabled. CIS Level 2 extends that and encrypts block volumes with a customer-managed key. 
+CIS Level 1 ensures Legacy IMDS Metadata V1 endpoints on compute instances are disabled. CIS Level 2 extends that and encrypts block volumes with a customer-managed key.
 
 ## CIS OCI Foundations Benchmark Modules Collection
 

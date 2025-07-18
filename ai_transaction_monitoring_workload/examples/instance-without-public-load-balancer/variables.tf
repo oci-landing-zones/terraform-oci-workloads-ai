@@ -54,11 +54,14 @@ variable "app_nsg_ocid" {
   default     = null
 }
 
+<<<<<<< HEAD
 variable "customer_key_ocid" {
   description = "OCID of the customer-managed encryption key. Required for CIS Level 2."
   type        = string
   default     = null
 }
+=======
+>>>>>>> ec0eca668c43a6a4eca3b28193965ebd5f68d4c3
 # ------------------------------------------------------
 # ----- Compute Instance
 #-------------------------------------------------------
@@ -93,12 +96,15 @@ variable "compute_fault_domain" {
   default     = 1
 }
 
+<<<<<<< HEAD
 variable "compute_disable_legacy_imds_endpoints" {
   description = "Whether the compute instance legacy metadata service endpoints should be disabled. Legacy service endpoints such as IMDSv1 are disabled by default. Set to `true` to disable legacy service endpoints."
   type        = bool
   default     = true
 }
 
+=======
+>>>>>>> ec0eca668c43a6a4eca3b28193965ebd5f68d4c3
 # ------------------------------------------------------
 # ----- Block Volume
 #-------------------------------------------------------
