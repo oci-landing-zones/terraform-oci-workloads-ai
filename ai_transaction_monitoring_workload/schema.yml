@@ -15,10 +15,7 @@ variableGroups:
   - title: "General"
     variables:
       - "workload_name"
-<<<<<<< HEAD
       - "cis_level"
-=======
->>>>>>> ec0eca668c43a6a4eca3b28193965ebd5f68d4c3
       - "workload_compartment_ocid"
       - "app_subnet_compartment_ocid"
       - "app_subnet_ocid"
@@ -35,13 +32,10 @@ variableGroups:
       - "compute_availability_domain"
       - "compute_fault_domain"
       - "block_volume_size"
-<<<<<<< HEAD
       - "customer_key_compartment_ocid"
       - "vault_ocid"
       - "customer_key_ocid"
       - "compute_disable_legacy_imds_endpoints"
-=======
->>>>>>> ec0eca668c43a6a4eca3b28193965ebd5f68d4c3
 
   - title: "Hidden Variables"
     variables:
@@ -67,7 +61,6 @@ variables:
     required: true
     default: "TMS"
 
-<<<<<<< HEAD
   cis_level:
     type: enum
     title: "CIS Level"
@@ -77,8 +70,6 @@ variables:
       - "1"
       - "2"
 
-=======
->>>>>>> ec0eca668c43a6a4eca3b28193965ebd5f68d4c3
   workload_compartment_ocid:
     type: oci:identity:compartment:id
     title: "Workload Compartment OCID"
@@ -199,7 +190,6 @@ variables:
     required: false
     default: 200
 
-<<<<<<< HEAD
   customer_key_compartment_ocid:
     type: oci:identity:compartment:id
     title: "Customer-Managed Key Compartment"
@@ -241,18 +231,12 @@ variables:
     description: "Check to disable the Legacy Metadata Service endpoints. Required for CIS Level 2."
     required: false
 
-=======
->>>>>>> ec0eca668c43a6a4eca3b28193965ebd5f68d4c3
 # ------------------------------------------------------
 # ------------   Hidden Vars  --------------------------
 #-------------------------------------------------------
 
   lb_policy:
-<<<<<<< HEAD
     description: "The load balancing policy for distributing incoming traffic to backend servers."
-=======
-    description: "The load balancing policy for distrubuting incoming traffic to backend servers."
->>>>>>> ec0eca668c43a6a4eca3b28193965ebd5f68d4c3
     type: string
     default: "ROUND_ROBIN"
     visible: false
